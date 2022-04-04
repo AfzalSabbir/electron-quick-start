@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <!--<meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">-->
+    <!--<link href="./main.css" rel="stylesheet">-->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Hello World!</title>
+</head>
+<body class="overflow-hidden">
+<header class="d-flex py-1 px-2 bg-light gap-1 shadow position-absolute top-0 w-100">
+    <button class="btn btn-primary btn-sm h2 m-0" id="show-modal">+</button>
+    <input type="text" id="search" class="form-control form-control-sm" placeholder="Search"/>
+</header>
+
+<main class="overflow-auto" style="margin-top: 39px; height: calc(100vh - 39px)">
+    <div id="no-items" class="text-center text-muted fw-bold my-4">No Items</div>
+    <div id="items" class="items px-2">
+        <div class="item d-flex gap-2 py-2 border-bottom">
+            <img src="https://via.placeholder.com/50" alt="placeholder" class="item-image rounded"/>
+            <div class="item-details">
+                <div class="item-title">Item Title</div>
+                <div class="item-description small text-muted">Item Description</div>
+            </div>
+        </div>
+        <div class="item d-flex gap-2 py-2 border-bottom">
+            <img src="https://via.placeholder.com/50" alt="placeholder" class="item-image rounded"/>
+            <div class="item-details">
+                <div class="item-title">Item Title</div>
+                <div class="item-description small text-muted">Item Description</div>
+            </div>
+        </div>
+        <div class="item d-flex gap-2 py-2 border-bottom">
+            <img src="https://via.placeholder.com/50" alt="placeholder" class="item-image rounded"/>
+            <div class="item-details">
+                <div class="item-title">Item Title</div>
+                <div class="item-description small text-muted">Item Description</div>
+            </div>
+        </div>
+        <div class="item d-flex gap-2 py-2 border-bottom">
+            <img src="https://via.placeholder.com/50" alt="placeholder" class="item-image rounded"/>
+            <div class="item-details">
+                <div class="item-title">Item Title</div>
+                <div class="item-description small text-muted">Item Description</div>
+            </div>
+        </div>
+        <div class="item d-flex gap-2 py-2 border-bottom">
+            <img src="https://via.placeholder.com/50" alt="placeholder" class="item-image rounded"/>
+            <div class="item-details">
+                <div class="item-title">Item Title</div>
+                <div class="item-description small text-muted">Item Description</div>
+            </div>
+        </div>
+        <div class="item d-flex gap-2 py-2 border-bottom">
+            <img src="https://via.placeholder.com/50" alt="placeholder" class="item-image rounded"/>
+            <div class="item-details">
+                <div class="item-title">Item Title</div>
+                <div class="item-description small text-muted">Item Description</div>
+            </div>
+        </div>
+        <div class="item d-flex gap-2 py-2 border-bottom">
+            <img src="https://via.placeholder.com/50" alt="placeholder" class="item-image rounded"/>
+            <div class="item-details">
+                <div class="item-title">Item Title</div>
+                <div class="item-description small text-muted">Item Description</div>
+            </div>
+        </div>
+        <div class="item d-flex gap-2 py-2 border-bottom">
+            <img src="https://via.placeholder.com/50" alt="placeholder" class="item-image rounded"/>
+            <div class="item-details">
+                <div class="item-title">Item Title</div>
+                <div class="item-description small text-muted">Item Description</div>
+            </div>
+        </div>
+        <div class="item d-flex gap-2 py-2 border-bottom">
+            <img src="https://via.placeholder.com/50" alt="placeholder" class="item-image rounded"/>
+            <div class="item-details">
+                <div class="item-title">Item Title</div>
+                <div class="item-description small text-muted">Item Description</div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="modal"
+     class="position-absolute w-100 h-100 top-0 d-none align-items-center align-middle"
+     style="background: #000000dd;">
+    <div class="px-3 py-2 w-100">
+        <input type="text" id="url" class="form-control form-control-sm" placeholder="Enter URL">
+        <div class="d-flex gap-1 my-2">
+            <button id="add-item" class="btn btn-success btn-sm text-nowrap">Add Item</button>
+            <button id="cancel-modal" class="btn btn-light btn-sm">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- You can also require other files to run in this process -->
+<script src="app.js"></script>
+</body>
+</html>
