@@ -2,9 +2,13 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
 const windowStateKeeper             = require('electron-window-state')
 const path                          = require('path')
+const readItem                      = require('./readItem')
 
-ipcMain.on('add-item', (event, item) => {
-    console.log(item, 'ipcMain')
+ipcMain.on('add-item', (event, itemUrl) => {
+    console.log(itemUrl)
+    readItem(itemUrl, item => {
+        event.sender.send('item-added', item)
+    });
 })
 
 function createWindow() {
