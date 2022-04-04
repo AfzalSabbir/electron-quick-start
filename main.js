@@ -14,18 +14,18 @@ ipcMain.on('add-item', (event, itemUrl) => {
 function createWindow() {
     // win state keeper
     const state = windowStateKeeper({
-        defaultWidth : 500,
-        defaultHeight: 650,
+        defaultWidth : '100%',
+        defaultHeight: '100%',
     })
 
     // Create the browser window.
     const mainWindow = new BrowserWindow({
-        x             : state.x,
-        y             : state.y,
-        width         : state.width,
-        height        : state.height,
-        minWidth      : 350,
-        maxWidth      : 900,
+        x       : state.x,
+        y       : state.y,
+        width   : state.width,
+        height  : state.height,
+        minWidth: 350,
+        /*maxWidth      : 900,*/
         minHeight     : 300,
         webPreferences: {
             preload         : path.join(__dirname, 'preload.js'),

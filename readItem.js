@@ -1,4 +1,5 @@
 const {BrowserWindow} = require('electron');
+const {v4: uuidv4}    = require('uuid');
 
 let offscreenWindow;
 
@@ -17,8 +18,9 @@ module.exports = (url, callback) => {
         // offscreenWindow capturePage
         offscreenWindow.webContents.capturePage().then(image => {
             let screenShot = image.toDataURL();
+            let uuid       = uuidv4();
 
-            callback({title, screenShot, url});
+            callback({title, screenShot, url, uuid});
 
             offscreenWindow.close();
             offscreenWindow = null;
