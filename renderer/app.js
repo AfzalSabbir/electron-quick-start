@@ -84,4 +84,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     itemActions.setItemsFromLocalStorage();
 
     itemActions.checkItems();
+
+    window.newItem        = toggleModal;
+    window.readAnItem     = itemActions.open;
+    window.openItemNative = itemActions.openNative;
+    window.searchItem     = () => searchInput.focus();
 });

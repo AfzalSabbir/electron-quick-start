@@ -83,6 +83,12 @@ exports.open = (e) => {
     readerWindow.eval(readerJS.replace('indexNumber', index).replace('uuidString', uuid));
 }
 
+exports.openNative = () => {
+    if (!this.itemsList()?.length) return;
+
+    shell.openExternal(this.getSelectedItem()?.dataset?.url || '');
+}
+
 exports.deleteEventListener = async (e) => {
     let parentItem = e.target.closest('.item');
 
@@ -97,21 +103,25 @@ window.addEventListener('message', (e) => {
     switch (e.data.action) {
         case 'delete-reader-item':
             itemsSelector.removeChild(itemsSelector.childNodes[e.data.itemIndex]);
-            window.delete(e.data);
+            window.deleteItem(e.data);
             e.source.close();
             break;
     }
 });
 
-window.delete = ({itemUuid: uuid}) => {
+window.deleteItem = ({itemUuid: uuid}) => {
+    uuid = uuid || this.getSelectedItem()?.dataset?.uuid;
+
     this.deleteItemsFromLocalStorage(uuid);
     this.checkItems();
 }
 
 exports.getSelectedItem = () => document.querySelector('#items .selected');
 
+exports.itemsList = () => document.querySelectorAll('.items .item');
+
 exports.checkItems = () => {
-    let itemList = document.querySelectorAll('.items .item');
+    let itemList = this.itemsList();
     let noItems  = document.querySelector('#no-items');
     if (!itemList.length) {
         noItems.classList.remove('d-none');
