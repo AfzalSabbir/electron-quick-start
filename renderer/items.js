@@ -4,7 +4,7 @@ let demo = `[{"title":"Google","uuid":"466d2a9a-3977-4b72-81e3-5e41b3062a54","sc
 
 exports.addItem = (item, isNew) => {
     let newItem = document.createElement('div');
-    newItem.setAttribute("class", "item d-flex gap-2 py-2 border-bottom justify-content-between");
+    newItem.setAttribute("class", "item d-flex gap-2 py-2 border-bottom justify-content-between px-2");
     newItem.setAttribute("data-uuid", item.uuid);
     newItem.innerHTML = `<div class="d-flex gap-2">
             <img src="${item.screenShot}"
@@ -25,18 +25,21 @@ exports.addItem = (item, isNew) => {
         this.saveItemInLocalStorage(item);
     }
 
-    newItem.addEventListener('click', this.deleteEventListener);
+    newItem.addEventListener('click', (e) => {
+        e.currentTarget.classList.toggle('selected');
+    });
+    newItem.querySelector('.delete-item').addEventListener('click', this.deleteEventListener);
     itemsSelector.appendChild(newItem);
 }
 
 exports.deleteEventListener = async (e) => {
     let parentItem = e.target.closest('.item');
 
-    if (confirm(`Are you sure you want to delete ${parentItem.querySelector('.item-title').innerText}?`)) {
-        parentItem.remove();
-        await this.deleteItemsFromLocalStorage(parentItem.dataset.uuid);
-        this.checkItems();
-    }
+    //if (confirm(`Are you sure you want to delete ${parentItem.querySelector('.item-title').innerText}?`)) {
+    parentItem.remove();
+    await this.deleteItemsFromLocalStorage(parentItem.dataset.uuid);
+    this.checkItems();
+    //}
 }
 
 exports.checkItems = () => {
