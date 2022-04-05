@@ -25,11 +25,30 @@ exports.addItem = (item, isNew) => {
         this.saveItemInLocalStorage(item);
     }
 
-    newItem.addEventListener('click', (e) => {
-        e.currentTarget.classList.toggle('selected');
-    });
+    newItem.addEventListener('click', this.select);
     newItem.querySelector('.delete-item').addEventListener('click', this.deleteEventListener);
     itemsSelector.appendChild(newItem);
+}
+
+exports.select = (e, arrow = null) => {
+    let selected = this.getSelectedItem(),
+        elementSibling;
+    if (!arrow) {
+        e.currentTarget.classList.toggle('selected');
+        selected && selected.classList.remove('selected');
+    } else if (arrow && selected) {
+        switch (arrow) {
+            case 'up':
+                elementSibling = selected.previousElementSibling;
+                break;
+            case 'down':
+                elementSibling = selected.nextElementSibling;
+                break;
+        }
+    }
+
+    elementSibling && selected && selected.classList.remove('selected');
+    elementSibling?.classList.toggle('selected');
 }
 
 exports.deleteEventListener = async (e) => {
@@ -42,12 +61,17 @@ exports.deleteEventListener = async (e) => {
     //}
 }
 
+exports.getSelectedItem = () => document.querySelector('#items .selected');
+
 exports.checkItems = () => {
     let itemList = document.querySelectorAll('.items .item');
     let noItems  = document.querySelector('#no-items');
     if (!itemList.length) {
         noItems.classList.remove('d-none');
     } else {
+        setTimeout(() => {
+            itemList[0]?.classList.add('selected');
+        });
         noItems.classList.add('d-none');
     }
 };

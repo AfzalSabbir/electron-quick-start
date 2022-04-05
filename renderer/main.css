@@ -14,10 +14,15 @@ input::placeholder {
 }
 
 .items > .item {
-    border-left : 6px solid transparent;
+    border-left : 6px solid lightgray;
 }
 
 .items > .item.selected {
     border-left : 6px solid #009ed0;
     background  : #eaeaea;
+}
+
+#modal {
+    background : #000000dd;
+    z-index    : 2;
 }
