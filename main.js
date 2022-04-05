@@ -37,7 +37,7 @@ function createWindow() {
     mainWindow.loadFile('./renderer/main.html')
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 
     // Managing window state
     state.manage(mainWindow)
