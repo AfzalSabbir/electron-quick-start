@@ -17,15 +17,17 @@ exports.addItem = (item, isNew) => {
     newItem.setAttribute("class", "item d-flex gap-2 py-2 border-bottom justify-content-between px-2 user-select-none");
     newItem.setAttribute("data-uuid", item.uuid);
     newItem.setAttribute("data-url", item.url);
-    newItem.innerHTML = `<div class="d-flex gap-2">
+    newItem.innerHTML = `<div class="d-flex gap-2 w-100">
             <img src="${item.screenShot}"
                 alt="${item.title}"
-                class="item-image rounded img-thumbnail"
+                class="item-image rounded img-thumbnail me-2"
                 style="height: 50px;"/>
             <div class="item-details d-grid">
                 <div class="item-title w-100 overflow-hidden text-nowrap"
-                    style="text-overflow: ellipsis;line-height: 24px;">${item.title}</div>
-                <!--<a href="${item.url}" target="_blank" class="item-description small text-muted" style="display: contents">${item.url}</a>-->
+                    title="${item.title}">
+                    ${item.title}
+                </div>
+                <a href="${item.url}" target="_blank" class="item-description small text-muted" style="display: contents">${item.url}</a>
             </div>
         </div>
         <div class="my-auto">

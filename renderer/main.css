@@ -1,4 +1,4 @@
-input {
+/*input {
     font-size     : 20px;
     border-radius : 5px;
     border        : 1px solid silver;
@@ -7,7 +7,7 @@ input {
 
 input::placeholder {
     color : lightgray;
-}
+}*/
 
 .items > .item:hover {
     background : #f1f1f1 !important;
@@ -20,6 +20,11 @@ input::placeholder {
 .items > .item.selected {
     border-left : 6px solid #009ed0;
     background  : #eaeaea;
+}
+
+.item-details > .item-title {
+    text-overflow : ellipsis;
+    line-height   : 24px;
 }
 
 #modal {

@@ -14,8 +14,8 @@ ipcMain.on('add-item', (event, itemUrl) => {
 function createWindow() {
     // win state keeper
     const state = windowStateKeeper({
-        defaultWidth : 650,
-        defaultHeight: 500,
+        defaultWidth : '100%',
+        defaultHeight: '100%',
     })
 
     // Create the browser window.
