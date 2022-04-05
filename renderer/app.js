@@ -15,11 +15,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         addItem     = document.querySelector('#add-item'),
         searchInput = document.querySelector('#search'),
         refresh     = document.querySelector('#refresh'),
-        inputUrl    = document.querySelector('#url');
+        inputUrl    = document.querySelector('#url'),
+        showingList = true;
 
     const toggleModal = () => {
         modal.classList.toggle('d-flex');
         modal.classList.toggle('d-none');
+        showingList = !!modal.classList.contains('d-none');
         inputUrl.focus();
     }
 
@@ -49,7 +51,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     showModal.addEventListener('click', toggleModal);
     cancelModal.addEventListener('click', toggleModal);
     addItem.addEventListener('click', addNewItem);
-    refresh.addEventListener('click', itemActions.setItemsFromLocalStorage);
+    refresh.addEventListener('click', () => {
+        searchInput.value = '';
+        itemActions.setItemsFromLocalStorage();
+    });
     document.addEventListener('keydown', (e) => {
         switch (e.key) {
             case 'ArrowDown':
@@ -60,6 +65,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 break;
             case 'Delete':
                 itemActions.getSelectedItem()?.querySelector('.delete-item')?.click();
+                break;
+            case 'Enter':
+                showingList && itemActions.open();
                 break;
         }
     });

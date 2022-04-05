@@ -21,13 +21,14 @@ exports.addItem = (item, isNew) => {
             <img src="${item.screenShot}"
                 alt="${item.title}"
                 class="item-image rounded img-thumbnail me-2"
-                style="height: 50px;"/>
+                style="height: 80px;"/>
             <div class="item-details d-grid">
                 <div class="item-title w-100 overflow-hidden text-nowrap"
                     title="${item.title}">
                     ${item.title}
                 </div>
                 <a href="${item.url}" target="_blank" class="item-description small text-muted" style="display: contents">${item.url}</a>
+                <sub class="text-muted d-block">${item.uuid}</sub>
             </div>
         </div>
         <div class="my-auto">
@@ -68,20 +69,18 @@ exports.select = (e, arrow = null) => {
 exports.open = (e) => {
     let selected     = this.getSelectedItem();
     let url          = selected.getAttribute('data-url');
+    let uuid         = selected.getAttribute('data-uuid');
+    let index        = this.getItemsFromLocalStorage().findIndex(item => item.uuid === uuid);
     let readerWindow = window.open(url, '', `
             maxWidth=2000,
             maxHeight=2000,
-            width=1200,
-            height=800,
+            width=700,
+            height=500,
             backgroundColor=#DEDEDE,
             contextIsolation=1,
             nodeIntegration=0,
         `);
-
-
-    //readerWindow.eval("alert('Hello There!');");
-    //readerWindow.executeJavaScript("alert('Hello There!');");
-    readerWindow.eval(readerJS);
+    readerWindow.eval(readerJS.replace('indexNumber', index).replace('uuidString', uuid));
 }
 
 exports.deleteEventListener = async (e) => {
@@ -92,6 +91,21 @@ exports.deleteEventListener = async (e) => {
     await this.deleteItemsFromLocalStorage(parentItem.dataset.uuid);
     this.checkItems();
     //}
+}
+
+window.addEventListener('message', (e) => {
+    switch (e.data.action) {
+        case 'delete-reader-item':
+            itemsSelector.removeChild(itemsSelector.childNodes[e.data.itemIndex]);
+            window.delete(e.data);
+            e.source.close();
+            break;
+    }
+});
+
+window.delete = ({itemUuid: uuid}) => {
+    this.deleteItemsFromLocalStorage(uuid);
+    this.checkItems();
 }
 
 exports.getSelectedItem = () => document.querySelector('#items .selected');
@@ -119,7 +133,7 @@ exports.setItemsFromLocalStorage = (search = null) => {
     itemsSelector.innerHTML = '';
     //localStorage.setItem('items', demo);
     let items               = this.getItemsFromLocalStorage();
-    !!search && (items = items.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
+    !!search && (items = items.filter(item => item?.title?.toLowerCase().includes(search?.toLowerCase())));
     if (items.length > 0) {
         items.forEach(item => {
             this.addItem(item, false);

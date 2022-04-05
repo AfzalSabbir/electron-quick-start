@@ -1,3 +1,5 @@
+
+
 let readitClose = document.createElement('div');
 /*readitClose.setAttribute(
     'style',
@@ -33,13 +35,12 @@ readitClose.innerText = 'Done';
 readitClose.onclick = (e) => {
     window.opener.postMessage(
         {
-            action   : "delete-reader-item",
-            itemIndex: "index",
+            action   : 'delete-reader-item',
+            itemIndex: 'indexNumber',
+            itemUuid : 'uuidString',
         },
         "*",
     );
 };
 
 document.getElementsByTagName("body")[0].append(readitClose);
-
-console.log(readitClose, 'readitClose');
