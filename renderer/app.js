@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         cancelModal = document.querySelector('#cancel-modal'),
         addItem     = document.querySelector('#add-item'),
         searchInput = document.querySelector('#search'),
+        refresh     = document.querySelector('#refresh'),
         inputUrl    = document.querySelector('#url');
 
     const toggleModal = () => {
@@ -48,6 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     showModal.addEventListener('click', toggleModal);
     cancelModal.addEventListener('click', toggleModal);
     addItem.addEventListener('click', addNewItem);
+    refresh.addEventListener('click', itemActions.setItemsFromLocalStorage);
     document.addEventListener('keydown', (e) => {
         switch (e.key) {
             case 'ArrowDown':

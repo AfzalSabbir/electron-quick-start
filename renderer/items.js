@@ -91,9 +91,10 @@ exports.setItemsFromLocalStorage = (search = null) => {
         items.forEach(item => {
             this.addItem(item, false);
         });
-        //this.checkItems();
     }
     this.checkItems();
+
+    console.log('Reset list')
 };
 
 exports.deleteItemsFromLocalStorage = (uuid, checkItems = null) => {
