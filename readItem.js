@@ -5,8 +5,12 @@ let offscreenWindow;
 
 module.exports = (url, callback) => {
     offscreenWindow = new BrowserWindow({
-        width: 400, height: 400, show: false, webPreferences: {
-            offscreen: true,
+        width         : 400,
+        height        : 400,
+        show          : false,
+        webPreferences: {
+            offscreen      : true,
+            nodeIntegration: false,
         },
     });
 

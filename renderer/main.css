@@ -26,3 +26,8 @@ input::placeholder {
     background : #000000dd;
     z-index    : 2;
 }
+
+/*
+.user-select-none {
+    -webkit-user-select : none;
+}*/
