@@ -22,7 +22,7 @@
   "devDependencies": {
     "electron"        : "^9.0.0",
     "electron-builder": "^22.14.13",
-    "nodemon"         : "^2.0.0"
+    "nodemon"         : "^2.0.18"
   },
   "dependencies"   : {
     "bootstrap"            : "^5.1.3",
