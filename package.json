@@ -21,7 +21,7 @@
   "license"        : "CC0-1.0",
   "devDependencies": {
     "electron"        : "^9.0.0",
-    "electron-builder": "^22.14.13",
+    "electron-builder": "^23.6.0",
     "nodemon"         : "^2.0.0"
   },
   "dependencies"   : {
